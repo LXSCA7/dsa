@@ -18,5 +18,8 @@ void list_add_head(struct List* list, int value);
 void list_print(struct List* list);
 void list_free(struct List* list);
 bool list_get(struct List* list, int position, int* result);
+void list_add_position(struct List* list, int position, int value);
+void list_remove_head(struct List* list);
+void list_remove_tail(struct List* list);
 
 #endif

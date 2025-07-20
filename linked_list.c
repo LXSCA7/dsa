@@ -76,6 +76,10 @@ void list_free(struct List* list) {
 }
 
 void list_add_position(struct List* list, int position, int value) {
+   if (position < 0 || position > list->length) {
+      return;
+   }
+   
    if (position == 0) {
       list_add_head(list, value);
       return;
@@ -83,7 +87,19 @@ void list_add_position(struct List* list, int position, int value) {
 
    if (position == list->length) {
       list_add_tail(list, value);
+      return;
    }
+
+   struct Node* new_node = node_create(value);
+   struct Node* previous_node = list->head;
+   for (int i = 0; i < position-1; i++) {
+      previous_node = previous_node->next;
+   }
+   struct Node* actual_node = previous_node->next;
+  
+   previous_node->next = new_node;
+   new_node->next = actual_node;
+   list->length++;
 }
 
 bool list_get(struct List* list, int position, int* result) {
@@ -106,4 +122,42 @@ bool list_get(struct List* list, int position, int* result) {
 
    *result = node->value;
    return false;
+}
+
+void list_remove_head(struct List* list) {
+   if (list == NULL || list->head == NULL)
+      return;
+
+   struct Node* node_to_remove = list->head;
+   
+   list->head = list->head->next;
+   list->length--;
+
+   if (list->head == NULL)
+      list->tail = NULL;
+
+   free(node_to_remove);
+}
+
+void list_remove_tail(struct List* list) {
+   if (list == NULL || list->tail == NULL)
+      return;
+
+   list->length--;
+
+   if (list->head == list->tail) {
+      free(list->head);
+      list->head = NULL;
+      list->tail = NULL;
+
+      return;
+   }
+
+   struct Node* penultimate_node = list->head;
+   while (penultimate_node->next != list->tail)
+      penultimate_node = penultimate_node->next;
+    
+   free(penultimate_node->next);
+   list->tail = penultimate_node;
+   penultimate_node->next = NULL;
 }
