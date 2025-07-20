@@ -1,43 +1,9 @@
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-struct Node {
-   int value;
-   struct Node* next;
-};
-
-struct List {
-   struct Node* head;
-   struct Node* tail;
-   int length;
-};
-
-struct List* list_create();
-void list_add(struct List* list, int value);
-void list_add_head(struct List* list, int value);
-void list_print(struct List* list);
-void list_free(struct List* list);
-bool list_get(struct List* list, int position, int* result);
+#include "linked_list.h"
 
 struct Node* node_create(int value);
-
-int main() {
-   struct List* list = list_create();
-   list_add(list, 12);
-   list_add(list, 48);
-   list_add(list, 24);
-   list_add(list, 72);
-   list_add(list, 36);
-   list_add(list, 100);
-   list_print(list);
-   int result;
-   list_get(list, 6, &result);
-   printf("list[3] = %i\n", result);
-   printf("list->length = %i\n", list->length);
-   list_free(list);
-}
 
 struct Node* node_create(int value) {
    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
@@ -121,7 +87,7 @@ void list_add_position(struct List* list, int position, int value) {
 }
 
 bool list_get(struct List* list, int position, int* result) {
-   if (list->head == NULL || position < 0 || position > list->length)
+   if (list->head == NULL || position < 0 || position >= list->length)
       return false;
    
    struct Node* node = list->head;
@@ -130,7 +96,7 @@ bool list_get(struct List* list, int position, int* result) {
       return true;
    }
    
-   if (position == list->length) {
+   if (position == list->length-1) {
       *result = list->tail->value;
       return true;
    }
