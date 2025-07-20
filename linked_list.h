@@ -13,7 +13,7 @@ struct List {
 };
 
 struct List* list_create();
-void list_add(struct List* list, int value);
+void list_add_tail(struct List* list, int value);
 void list_add_head(struct List* list, int value);
 void list_print(struct List* list);
 void list_free(struct List* list);

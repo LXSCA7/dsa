@@ -26,7 +26,7 @@ struct List* list_create() {
    return list;
 }
 
-void list_add(struct List* list, int value) {
+void list_add_tail(struct List* list, int value) {
    struct Node* node = node_create(value);
    if (list->head == NULL) {
       list->head = node;
@@ -42,7 +42,7 @@ void list_add(struct List* list, int value) {
 
 void list_add_head(struct List* list, int value) {
    if (list->head == NULL) {
-      list_add(list, value);
+      list_add_tail(list, value);
       return;
    }
 
@@ -82,7 +82,7 @@ void list_add_position(struct List* list, int position, int value) {
    }
 
    if (position == list->length) {
-      list_add(list, value);
+      list_add_tail(list, value);
    }
 }
 
