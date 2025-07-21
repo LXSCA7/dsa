@@ -1,5 +1,7 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
+#include <stdbool.h>
+#include <stdlib.h>
 
 struct Node {
    int value;
