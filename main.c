@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include "linked_list.h"
 
+void list();
+
 int main() {
+   list();
+}
+
+void list() {
    struct List* list = list_create();
    list_add_tail(list, 12);
    list_add_tail(list, 48);
