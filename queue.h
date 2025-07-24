@@ -2,14 +2,14 @@
 #define QUEUE_H
 #include "linked_list.h"
 
-struct Queue {
-   struct List* List;
-};
+typedef struct {
+   List* List;
+}Queue;
 
-struct Queue* queue_create();
-void queue_enqueue(struct Queue* queue, int value);
-bool queue_dequeue(struct Queue* queue, int* result);
-void queue_print(struct Queue* queue);
-void queue_free(struct Queue* queue);
+Queue* queue_create();
+void queue_enqueue(Queue* queue, int value);
+bool queue_dequeue(Queue* queue, int* result);
+void queue_print(Queue* queue);
+void queue_free(Queue* queue);
 
 #endif

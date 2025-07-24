@@ -9,20 +9,20 @@ struct Node {
    struct Node* next;
 };
 
-struct List {
+typedef struct {
    struct Node* head;
    struct Node* tail;
    int length;
-};
+}List;
 
-struct List* list_create();
-void list_add_tail(struct List* list, int value);
-void list_add_head(struct List* list, int value);
-void list_print(struct List* list);
-void list_free(struct List* list);
-bool list_get(struct List* list, int position, int* result);
-void list_add_position(struct List* list, int position, int value);
-void list_remove_head(struct List* list);
-void list_remove_tail(struct List* list);
+List* list_create();
+void list_add_tail(List* list, int value);
+void list_add_head(List* list, int value);
+void list_print(List* list);
+void list_free(List* list);
+bool list_get(List* list, int position, int* result);
+void list_add_position(List* list, int position, int value);
+void list_remove_head(List* list);
+void list_remove_tail(List* list);
 
 #endif

@@ -12,8 +12,8 @@ struct Node* node_create(int value) {
    return node;
 }
 
-struct List* list_create() {
-   struct List* list = (struct List*)malloc(sizeof(struct List));
+List* list_create() {
+   List* list = (List*)malloc(sizeof(List));
    if (list == NULL)
       exit(1);
 
@@ -24,7 +24,7 @@ struct List* list_create() {
    return list;
 }
 
-void list_add_tail(struct List* list, int value) {
+void list_add_tail(List* list, int value) {
    struct Node* node = node_create(value);
    if (list->head == NULL) {
       list->head = node;
@@ -38,7 +38,7 @@ void list_add_tail(struct List* list, int value) {
    list->length++;
 }
 
-void list_add_head(struct List* list, int value) {
+void list_add_head(List* list, int value) {
    if (list->head == NULL) {
       list_add_tail(list, value);
       return;
@@ -50,7 +50,7 @@ void list_add_head(struct List* list, int value) {
    list->length++;
 }
 
-void list_print(struct List* list) {
+void list_print(List* list) {
    struct Node* current = list->head;
    while (current != NULL) {
       printf("%i", current->value);
@@ -62,7 +62,7 @@ void list_print(struct List* list) {
    printf("\n");
 }
 
-void list_free(struct List* list) {
+void list_free(List* list) {
    struct Node* current = list->head;
    while (current != NULL) {
       struct Node* next = current->next;
@@ -73,7 +73,7 @@ void list_free(struct List* list) {
    free(list);
 }
 
-void list_add_position(struct List* list, int position, int value) {
+void list_add_position(List* list, int position, int value) {
    if (position < 0 || position > list->length) {
       return;
    }
@@ -100,7 +100,7 @@ void list_add_position(struct List* list, int position, int value) {
    list->length++;
 }
 
-bool list_get(struct List* list, int position, int* result) {
+bool list_get(List* list, int position, int* result) {
    if (list->head == NULL || position < 0 || position >= list->length)
       return false;
    
@@ -122,7 +122,7 @@ bool list_get(struct List* list, int position, int* result) {
    return false;
 }
 
-void list_remove_head(struct List* list) {
+void list_remove_head(List* list) {
    if (list == NULL || list->head == NULL)
       return;
 
@@ -137,7 +137,7 @@ void list_remove_head(struct List* list) {
    free(node_to_remove);
 }
 
-void list_remove_tail(struct List* list) {
+void list_remove_tail(List* list) {
    if (list == NULL || list->tail == NULL)
       return;
 

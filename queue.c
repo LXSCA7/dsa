@@ -2,8 +2,8 @@
 #include "linked_list.h"
 #include <limits.h>
 
-struct Queue* queue_create() {
-   struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
+Queue* queue_create() {
+   Queue* queue = (Queue*)malloc(sizeof(Queue));
    if (queue == NULL)
       exit(1);
 
@@ -11,11 +11,11 @@ struct Queue* queue_create() {
    return queue;
 }
 
-void queue_enqueue(struct Queue* queue, int value) {
+void queue_enqueue(Queue* queue, int value) {
    list_add_tail(queue->List, value);
 }
 
-bool queue_dequeue(struct Queue* queue, int* result) {
+bool queue_dequeue(Queue* queue, int* result) {
    if (queue->List->head == NULL || queue == NULL)
       return false;
 
@@ -26,11 +26,11 @@ bool queue_dequeue(struct Queue* queue, int* result) {
    return true;
 }
 
-void queue_print(struct Queue* queue) {
+void queue_print(Queue* queue) {
    list_print(queue->List);
 }
 
-void queue_free(struct Queue* queue) {
+void queue_free(Queue* queue) {
    list_free(queue->List);
    free(queue);
 }
