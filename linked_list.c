@@ -63,6 +63,7 @@ void list_print(List* list) {
 }
 
 void list_free(List* list) {
+   if (list == NULL) return;
    struct Node* current = list->head;
    while (current != NULL) {
       struct Node* next = current->next;

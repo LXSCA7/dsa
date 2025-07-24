@@ -31,6 +31,7 @@ void queue_print(Queue* queue) {
 }
 
 void queue_free(Queue* queue) {
+   if (queue == NULL) return;
    list_free(queue->List);
    free(queue);
 }
