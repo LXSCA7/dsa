@@ -1,18 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "linked_list.h"
 #include "queue.h"
+#include "stack.h"
 
 void list();
 void queue();
+void stack();
 
 int main() {
    list();
    queue();
+   stack();
 }
 
 void list() {
    printf("\nLinked list:\n");
-   struct List* list = list_create();
+   List* list = list_create();
    list_add_tail(list, 12);
    list_add_tail(list, 48);
    list_add_tail(list, 24);
@@ -29,7 +33,7 @@ void list() {
 
 void queue() {
    printf("\nQueue:\n");
-   struct Queue* queue = queue_create();
+   Queue* queue = queue_create();
    queue_enqueue(queue, 6);
    queue_enqueue(queue, 7);
    queue_enqueue(queue, 8);
@@ -43,4 +47,26 @@ void queue() {
    }
    queue_print(queue);
    queue_free(queue);
+}
+
+void stack() {
+   printf("\nStack:\n");
+   Stack* stack = stack_create();
+   if (stack == NULL) exit(4);
+   for (int i = 0; i < 5; i++) {
+      printf("%i\n", i);
+      stack_push(stack, i);
+   }
+
+   list_print(stack->list);
+
+   for (int j = 0; j < 5; j++) {
+      int result;
+      if (stack_pop(stack, &result))
+         printf("Pos: %i = %i\n", j, result);
+      else
+         printf("vish n deu");
+   }
+
+   stack_free(stack);
 }
